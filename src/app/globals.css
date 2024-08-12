@@ -31,3 +31,75 @@ body {
     text-wrap: balance;
   }
 }
+
+@font-face {
+  font-family: "Play Fair";
+  font-weight: 400;
+  font-style: normal;
+  src: url("../../public/asset/fonts/PlayfairDisplay-Regular.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Play Fair";
+  font-weight: 500;
+  font-style: normal;
+  src: url("../../public/asset/fonts/PlayfairDisplay-Medium.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Play Fair";
+  font-weight: 400;
+  font-style: italic;
+  src: url("../../public/asset/fonts/PlayfairDisplay-MediumItalic.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Play Fair";
+  font-weight: 600;
+  font-style: normal;
+  src: url("../../public/asset/fonts/PlayfairDisplay-SemiBold.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Play Fair";
+  font-weight: 600;
+  font-style: italic;
+  src: url("../../public/asset/fonts/PlayfairDisplay-SemiBoldItalic.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Play Fair";
+  font-weight: 700;
+  font-style: normal;
+  src: url("../../public/asset/fonts/PlayfairDisplay-Bold.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Play Fair";
+  font-weight: 700;
+  font-style: italic;
+  src: url("../../public/asset/fonts/PlayfairDisplay-BoldItalic.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Play Fair";
+  font-weight: 800;
+  font-style: normal;
+  src: url("../../public/asset/fonts/PlayfairDisplay-ExtraBold.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Play Fair";
+  font-weight: 800;
+  font-style: italic;
+  src: url("../../public/asset/fonts/PlayfairDisplay-ExtraBoldItalic.woff2")
+    format("woff2");
+}
