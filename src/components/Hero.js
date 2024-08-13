@@ -6,17 +6,17 @@ const Hero = () => {
     >
       <div className="absolute bottom-0 left-0">
         <div className="pl-[100px] pb-[128px]">
-          <h1 className="text-6xl font-medium max-w-[800px] text-left">
+          <h1 className="text-[100px] font-normal max-w-[70%] text-left leading-[121.02px] tracking-[-5%]">
             Unveiling{" "}
-            <span className=" font-play-fair italic">Timeless Elegance</span> in
+            <span className="font-play-fair italic">Timeless Elegance</span> in
             Every Space
           </h1>
         </div>
       </div>
 
       <div className="absolute bottom-0 right-0">
-        <div className="pr-[100px] pb-[128px] max-w-sm text-left">
-          <p className="text-[10px] leading-relaxed">
+        <div className="pr-[100px] pb-[128px] max-w-[34rem] text-left">
+          <p className="text-[16px] font-normal leading-relaxed">
             Where design meets innovation, and spaces come alive with
             creativity. As architects and interior designers based in the
             vibrant heart of Indonesia, we bring forth a fusion of cultural
