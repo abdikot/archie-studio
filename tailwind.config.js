@@ -13,7 +13,11 @@ module.exports = {
       colors: {
         "custom-gray": '#1F1F1F',
         "custom-white": '#FFF9F4',
-      } 
+      },
+      fontSize: {
+        "xxl4" : '40px',
+        "xxl10" : '100px'
+      }
     },
   },
   plugins: [],
