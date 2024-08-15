@@ -1,14 +1,16 @@
-import Contact from "@/components/Contact";
-import Expertise from "@/components/Expertise";
-import Footer from "@/components/Footer";
-import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
-import Project from "@/components/Projects";
-import Story from "@/components/Story";
+import React, { Suspense, lazy } from 'react';
+
+const Navbar = lazy(() => import('@/components/Navbar'));
+const Hero = lazy(() => import('@/components/Hero'));
+const Story = lazy(() => import('@/components/Story'));
+const Expertise = lazy(() => import('@/components/Expertise'));
+const Project = lazy(() => import('@/components/Projects'));
+const Contact = lazy(() => import('@/components/Contact'));
+const Footer = lazy(() => import('@/components/Footer'));
 
 export default function Home() {
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <Navbar />
       <Hero />
       <Story />
@@ -16,6 +18,6 @@ export default function Home() {
       <Project />
       <Contact />
       <Footer />
-    </>
+    </Suspense>
   );
 }
