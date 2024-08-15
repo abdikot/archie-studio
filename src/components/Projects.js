@@ -35,22 +35,22 @@ const Project = () => {
             className="w-full h-[300px] md:h-[450px] object-cover mt-8 md:mt-32"
           />
         </div>
-        <div className="flex flex-col w-full md:w-1/3 md:mr-[30px] lg:mr-[60px] xl:mr-[100px] mt-10 md:mt-[48px] lg:mt-[248px]">
+        <div className="flex flex-col w-full md:w-1/3 md:mr-[30px] lg:mr-[60px] xl:mr-[100px] mt-10 md:mt-12 lg:mt-[248px]">
           <img
             src="/asset/project-2.png"
             className="w-full h-[300px] md:h-[450px] object-cover"
           />
           <img
             src="/asset/project-5.png"
-            className="w-full h-[300px] md:h-[450px] object-cover mt-8 md:mt-[48px] lg:mt-32"
+            className="w-full h-[300px] md:h-[450px] object-cover mt-8 md:mt-12 lg:mt-32"
           />
           <img
             src="/asset/project-8.png"
-            className="w-full h-[300px] md:h-[450px] object-cover mt-8 md:mt-[48px] lg:mt-32"
+            className="w-full h-[300px] md:h-[450px] object-cover mt-8 md:mt-12 lg:mt-32"
           />
           <img
             src="/asset/project-11.png"
-            className="w-full h-[300px] md:h-[450px] object-cover mt-8 md:mt-[48px] lg:mt-32"
+            className="w-full h-[300px] md:h-[450px] object-cover mt-8 md:mt-12 lg:mt-32"
           />
         </div>
         <div className="flex flex-col w-full md:w-1/3 mt-10 md:mt-0 lg:mt-32">
@@ -60,15 +60,15 @@ const Project = () => {
           />
           <img
             src="/asset/project-6.png"
-            className="w-full h-[300px] md:h-[450px] object-cover mt-8 md:mt-[48px] lg:mt-32"
+            className="w-full h-[300px] md:h-[450px] object-cover mt-8 md:mt-12 lg:mt-32"
           />
           <img
             src="/asset/project-9.png"
-            className="w-full h-[300px] md:h-[450px] object-cover mt-8 md:mt-[48px] lg:mt-32"
+            className="w-full h-[300px] md:h-[450px] object-cover mt-8 md:mt-12 lg:mt-32"
           />
           <img
             src="/asset/project-12.png"
-            className="w-full h-[300px] md:h-[450px] object-cover mt-8 md:mt-[48px] lg:mt-32"
+            className="w-full h-[300px] md:h-[450px] object-cover mt-8 md:mt-12 lg:mt-32"
           />
         </div>
       </div>

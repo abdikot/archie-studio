@@ -6,7 +6,7 @@ const Hero = () => {
     >
       <div className="absolute bottom-0 left-0 right-0 px-4 py-8 sm:pl-[50px] sm:pr-[50px] sm:pb-16 md:px-[80px] lg:px-[100px] md:pb-32 flex flex-col md:flex-row md:justify-between md:items-end">
         <div className="flex flex-col xl:max-w-full">
-          <h1 className="text-[32px] sm:text-[40px] md:text-[64px] lg:text-[80px] xl:text-[90px] max-w-full sm:max-w-[80%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-full text-left leading-tight sm:leading-snug md:leading-[121.02px]">
+          <h1 className="text-[32px] sm:text-xxl4 md:text-[64px] lg:text-[80px] xl:text-[90px] max-w-full sm:max-w-[80%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-full text-left leading-tight sm:leading-snug md:leading-[121.02px]">
             Unveiling <span className="font-play-fair italic">Timeless Elegance</span> 
             <br />
             in Every Space

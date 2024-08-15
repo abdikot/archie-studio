@@ -1,6 +1,6 @@
 const Navbar = () => {
   return (
-    <nav className="h-[59px] bg-transparent pt-[54px] px-[20px] md:px-[50px] lg:px-[100px] fixed top-0 left-0 w-full z-10">
+    <nav className="h-[59px] bg-transparent pt-[54px] px-5 md:px-[50px] lg:px-[100px] fixed top-0 left-0 w-full z-10">
       <div className="flex justify-between items-center">
         <div className="flex items-center">
           <img
@@ -10,12 +10,12 @@ const Navbar = () => {
           />
         </div>
         <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
-          <button className="bg-transparent h-[40px] w-[120px] sm:h-[45px] sm:w-[140px] md:h-[50px] md:w-[160px] lg:h-[57px] lg:w-[189px] border-custom-white border-[1px] rounded-full text-base sm:text-lg md:text-xl lg:text-2xl text-custom-white mr-[20px] sm:mr-[30px] md:mr-[40px] lg:mr-[63.5px]">
+          <button className="bg-transparent h-10 w-[120px] sm:h-[45px] sm:w-[140px] md:h-[50px] md:w-[160px] lg:h-[57px] lg:w-[189px] border-custom-white border-[1px] rounded-full text-base sm:text-lg md:text-xl lg:text-2xl text-custom-white mr-5 sm:mr-[30px] md:mr-10 lg:mr-[63.5px]">
             Let's Talk
           </button>
           <a
             href="#"
-            className="text-sm sm:text-base md:text-lg lg:text-[24px] text-custom-white underline"
+            className="text-sm sm:text-base md:text-lg lg:text-2xl text-custom-white underline"
           >
             menu
           </a>
