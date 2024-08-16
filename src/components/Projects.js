@@ -6,7 +6,7 @@ const Project = () => {
           Our Project
         </p>
 
-        <h1 className="mt-10 md:mt-[150px] text-center text-xxl4 md:text-xxl10 px-4 md:px-[250px] lg:px-[350px] xl:px-[450px]">
+        <h1 className="mt-10 md:mt-[150px] text-center text-xxl4 md:text-xxl10 px-4  lg:px-[350px] xl:px-[450px]">
           Discover the Canvas of{" "}
           <span className="font-play-fair italic">Our Creativity</span>
         </h1>

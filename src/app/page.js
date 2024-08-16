@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, {Suspense, lazy } from 'react';
 
 const Navbar = lazy(() => import('@/components/Navbar'));
 const Hero = lazy(() => import('@/components/Hero'));

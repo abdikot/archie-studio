@@ -1,6 +1,19 @@
+"use client";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger)
+
 const Navbar = () => {
+
+  const navbarRef = useRef(null)
+  useEffect (() => {
+    gsap.fromTo(navbarRef.current, {yPercent: -200}, {yPercent: 0, duration: 3});
+  })
+
   return (
-    <nav className="h-[59px] bg-transparent pt-[54px] px-5 md:px-[50px] lg:px-[100px] fixed top-0 left-0 w-full z-10">
+    <nav ref={navbarRef} className="h-[59px] bg-transparent pt-[54px] px-5 md:px-[50px] lg:px-[100px] fixed top-0 left-0 w-full z-10">
       <div className="flex justify-between items-center">
         <div className="flex items-center">
           <img
