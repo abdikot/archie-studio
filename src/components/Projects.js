@@ -1,4 +1,19 @@
+"use client";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(useGSAP);
+
 const Project = () => {
+
+  const spanRef = useRef(null);
+
+  useGSAP(() => {
+    
+  })
   return (
     <section className="relative h-auto py-10 md:py-0">
       <div className="h-auto md:min-h-screen text-custom-gray flex flex-col items-center justify-between py-10 md:py-32">

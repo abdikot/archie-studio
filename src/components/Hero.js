@@ -1,8 +1,10 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
@@ -13,7 +15,7 @@ const Hero = () => {
   const spanRef = useRef(null);
   const pRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     gsap.set(leftBgRef.current, {xPercent: -100});
     gsap.set(h1Ref.current, {xPercent: -200, opacity: 0})
     gsap.set(spanRef.current, {opacity: 0})
@@ -23,15 +25,17 @@ const Hero = () => {
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger:sectionRef.current,
-        start: "top center"
+        start: "top center",
+        // end: "bottom 80%",
+        // toggleActions: "play complete reverse none"
       },
     })
-    timeline.to(leftBgRef.current, {xPercent: 0, duration: 1})
-    timeline.to(rightBgRef.current, {xPercent: 0, duration: 1}, "<")
+    timeline.to(leftBgRef.current, {xPercent: 0, duration: 2})
+    timeline.to(rightBgRef.current, {xPercent: 0, duration: 2}, "<")
     timeline.to(h1Ref.current, {xPercent: 0, opacity: 1, duration: 2})
     timeline.to(pRef.current, {xPercent: 0, opacity: 1, duration: 2}, "-=0.5")
     timeline.to(spanRef.current, {opacity: 1, duration: 3}, "-=0.5")
-  },[])
+  },{scope: sectionRef})
 
   return (
     <section

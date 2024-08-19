@@ -1,9 +1,11 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 const Expertise = () => {
   const sectionRef = useRef(null);
@@ -14,7 +16,7 @@ const Expertise = () => {
   const h1RightRef = useRef(null);
   const pRightRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     gsap.set(leftBgRef.current, { xPercent: -100 });
     gsap.set(h1LeftRef.current, { xPercent: -200, opacity: 0 });
     gsap.set(pLeftRef.current, { opacity: 0 });
@@ -22,22 +24,33 @@ const Expertise = () => {
     gsap.set(h1RightRef.current, { xPercent: 200, opacity: 0 });
     gsap.set(pRightRef.current, {  opacity: 0 });
 
-    const timeline = gsap.timeline({
+    
+    const tl1 = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top center",
+        toggleActions: "play none none reverse"
+      }
+    })
+    
+    tl1.to(leftBgRef.current, { xPercent: 0, duration: 1 });
+    tl1.to(rightBgRef.current, { xPercent: 0, duration: 1 });
+
+    const tl2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        pin: true,
+        scrub: true,
+        end: "+=4000",
       },
     });
 
-    timeline.to(leftBgRef.current, { xPercent: 0, duration: 1 });
-    timeline.to(h1LeftRef.current, { xPercent: 0, opacity: 1, duration: 2 }, "<");
-    
-    timeline.to(rightBgRef.current, { xPercent: 0, duration: 1 });
-    timeline.to(h1RightRef.current, { xPercent: 0, opacity: 1, duration: 2 }, "-=0.5");
-
-    timeline.to(pLeftRef.current, { opacity: 1, duration: 2 });
-    timeline.to(pRightRef.current, { opacity: 1, duration: 2 }, "-=0.5");
-  }, []);
+      tl2.to(h1LeftRef.current, { xPercent: 0, opacity: 1, duration: 2 });
+      tl2.to(h1RightRef.current, { xPercent: 0, opacity: 1, duration: 2 }), "+=5";
+      tl2.to(pLeftRef.current, { opacity: 1, duration: 2 });
+      tl2.to(pRightRef.current, { opacity: 1, duration: 2 }, "-=0.5");
+  }, {scope: sectionRef});
 
   return (
     <section

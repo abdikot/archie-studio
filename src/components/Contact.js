@@ -2,7 +2,7 @@ const Contact = () => {
   return (
     <section className="relative min-h-screen text-custom-gray flex flex-col py-10 sm:py-64">
       <div className="flex flex-col md:flex-row px-4 md:px-[100px] justify-between items-start">
-        <h1 className="text-3xl sm:text-4xl md:text-[64px] max-w-full md:max-w-auto leading-[29.05px]">
+        <h1 className="text-3xl sm:text-5xl md:text-[64px] max-w-full md:max-w-auto leading-[129.05px]">
           Ready to transform your space?
         </h1>
         <button className="h-10 md:h-[57px] mt-4 md:mt-0">
