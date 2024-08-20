@@ -50,7 +50,7 @@ const Story = () => {
         Our Story
       </p>
 
-      <p ref={textRef} className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight md:leading-[77.54px] pt-10 md:pt-28 px-6 sm:px-20 md:px-[100px] lg:px-[300px] xl:px-[451px]">
+      <p ref={textRef} className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight md:leading-[77.54px] pt-10 md:pt-28 px-6 sm:px-20 md:px-[100px] lg:px-[300px] xl:px-[360px]">
         We don't just design spaces, we weave narratives. Established in 2009,
         our journey in the world of architecture and interior design has been a
         tale of passion, innovation, and transformative creativity.

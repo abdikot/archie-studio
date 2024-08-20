@@ -9,21 +9,39 @@ gsap.registerPlugin(useGSAP);
 
 const Project = () => {
 
+  const sectionRef = useRef(null);
+  const containerRef = useRef(null);
   const spanRef = useRef(null);
 
   useGSAP(() => {
+
+    const tl1 = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "+=1000",
+        pin: true,
+        scrub: true
+      }
+    });
+
+    tl1.to(containerRef.current, { opacity: 0, duration: 0.5 })
+    gsap.fromTo(spanRef.current, 
+      { opacity: 0, scale: 1, y: 0 }, 
+      { opacity: 1, scale: 2, y: -100, duration: 1, ease: "power2.out" }
+    );
     
-  })
+  }, {scope: sectionRef})
   return (
-    <section className="relative h-auto py-10 md:py-0">
-      <div className="h-auto md:min-h-screen text-custom-gray flex flex-col items-center justify-between py-10 md:py-32">
+    <section ref={sectionRef} className="relative h-auto py-10 md:py-0">
+      <div ref={containerRef} className="h-auto md:min-h-screen text-custom-gray flex flex-col items-center justify-between py-10 md:py-32">
         <p className="text-center text-xl md:text-2xl leading-[29.05px]">
           Our Project
         </p>
 
-        <h1 className="mt-10 md:mt-[150px] text-center text-xxl4 md:text-xxl10 px-4  lg:px-[350px] xl:px-[450px]">
+        <h1 className="mt-10 md:mt-[150px] text-center text-xxl4 md:text-xxl10 px-4  lg:px-[350px] xl:px-[350px]">
           Discover the Canvas of{" "}
-          <span className="font-play-fair italic">Our Creativity</span>
+          <span ref={spanRef} className="font-play-fair italic">Our Creativity</span>
         </h1>
 
         <button className="bg-transparent h-[40px] w-[180px] md:h-[57px] md:w-[256px] border-custom-gray border-[1px] rounded-full text-base md:text-2xl mt-8">

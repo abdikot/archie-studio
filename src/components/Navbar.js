@@ -1,16 +1,17 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger)
 
 const Navbar = () => {
 
   const navbarRef = useRef(null)
-  useEffect (() => {
+  useGSAP (() => {
     gsap.fromTo(navbarRef.current, {yPercent: -200}, {yPercent: 0, duration: 3});
-  })
+  }, {scope: navbarRef})
 
   return (
     <nav ref={navbarRef} className="h-[59px] bg-transparent pt-[54px] px-5 md:px-[50px] lg:px-[100px] fixed top-0 left-0 w-full z-10">
