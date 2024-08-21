@@ -1,7 +1,38 @@
-const Footer = () => {
-  return (
-    <section className="flex flex-col min-h-screen bg-[#246FA6] text-custom-white">
+"use client";
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(useGSAP);
+
+const Footer = () => {
+  const sectionRef = useRef(null);
+
+  useGSAP(() => {
+    const section = sectionRef.current;
+
+    // Set initial clip-path to only reveal the middle
+    gsap.set(section, {
+      clipPath: "inset(50% 0 50% 0)",
+    });
+
+    // Animate the clip-path to reveal the entire section
+    gsap.to(section, {
+      clipPath: "inset(0% 0% 0% 0%)",
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        start: "top bottom", // Start animation when top of section hits bottom of viewport
+        end: "+=1000",   // End animation when bottom of section hits top of viewport
+        scrub: true,         // Smooth animation as you scroll
+      },
+    });
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="flex flex-col min-h-screen bg-[#246FA6] text-custom-white">
       <div className="flex items-center justify-center pt-20 px-4 md:px-[100px]">
         <img
           src="/icons/asset-logo2.svg"

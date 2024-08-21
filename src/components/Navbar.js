@@ -10,7 +10,8 @@ const Navbar = () => {
 
   const navbarRef = useRef(null)
   useGSAP (() => {
-    gsap.fromTo(navbarRef.current, {yPercent: -200}, {yPercent: 0, duration: 3});
+    gsap.set(navbarRef.current, {yPercent: -200})
+    gsap.to(navbarRef.current, {yPercent: 0, duration: 3});
   }, {scope: navbarRef})
 
   return (

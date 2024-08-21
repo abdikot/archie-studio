@@ -10,11 +10,12 @@ gsap.registerPlugin(useGSAP);
 const Project = () => {
 
   const sectionRef = useRef(null);
-  const containerRef = useRef(null);
+  const pRef = useRef(null);
+  const textRef = useRef(null);
+  const buttonRef = useRef(null);
   const spanRef = useRef(null);
 
   useGSAP(() => {
-
     const tl1 = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -25,26 +26,34 @@ const Project = () => {
       }
     });
 
-    tl1.to(containerRef.current, { opacity: 0, duration: 0.5 })
-    gsap.fromTo(spanRef.current, 
-      { opacity: 0, scale: 1, y: 0 }, 
-      { opacity: 1, scale: 2, y: -100, duration: 1, ease: "power2.out" }
-    );
+    tl1.to([pRef.current, textRef.current, spanRef.current, buttonRef.current], {  opacity: 0, duration: 0.5 })
+       .to(spanRef.current, {  display: "block", opacity: 1, yPercent: -100,  duration: 1 })
+
+    gsap.to(spanRef.current, 
+      {scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "+=15 top",
+        end: "bottom top", 
+        pin: spanRef.current,
+        pinSpacing: false,
+        scrub: true,
+        markers: true
+    }})
     
   }, {scope: sectionRef})
   return (
     <section ref={sectionRef} className="relative h-auto py-10 md:py-0">
-      <div ref={containerRef} className="h-auto md:min-h-screen text-custom-gray flex flex-col items-center justify-between py-10 md:py-32">
-        <p className="text-center text-xl md:text-2xl leading-[29.05px]">
+      <div className="h-auto md:min-h-screen text-custom-gray flex flex-col items-center justify-between py-10 md:py-32">
+        <p ref={pRef} className="text-center text-xl md:text-2xl leading-[29.05px]">
           Our Project
         </p>
 
         <h1 className="mt-10 md:mt-[150px] text-center text-xxl4 md:text-xxl10 px-4  lg:px-[350px] xl:px-[350px]">
-          Discover the Canvas of{" "}
-          <span ref={spanRef} className="font-play-fair italic">Our Creativity</span>
+          <span ref={textRef}>Discover the Canvas of </span>
+          <span ref={spanRef} className="font-play-fair italic z-10">Our Creativity</span>
         </h1>
 
-        <button className="bg-transparent h-[40px] w-[180px] md:h-[57px] md:w-[256px] border-custom-gray border-[1px] rounded-full text-base md:text-2xl mt-8">
+        <button ref={buttonRef} className="bg-transparent h-[40px] w-[180px] md:h-[57px] md:w-[256px] border-custom-gray border-[1px] rounded-full text-base md:text-2xl mt-8">
           See all projects
         </button>
       </div>
