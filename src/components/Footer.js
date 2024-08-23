@@ -4,44 +4,53 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const Footer = () => {
   const sectionRef = useRef(null);
+  const logoRef = useRef(null);
 
   useGSAP(() => {
     const section = sectionRef.current;
-
-    // Set initial clip-path to only reveal the middle
+    const logo = logoRef.current;
     gsap.set(section, {
       clipPath: "inset(50% 0 50% 0)",
     });
 
-    // Animate the clip-path to reveal the entire section
     gsap.to(section, {
       clipPath: "inset(0% 0% 0% 0%)",
       ease: "none",
       scrollTrigger: {
         trigger: section,
-        start: "top bottom", // Start animation when top of section hits bottom of viewport
-        end: "+=1000",   // End animation when bottom of section hits top of viewport
-        scrub: true,         // Smooth animation as you scroll
+        start: "top bottom",
+        end: "+=1000", 
+        scrub: true,       
       },
     });
-  }, []);
+
+    gsap.set(logo, {opacity: 0, x: -100})
+    gsap.to(logo, {scrollTrigger: {
+      trigger: section,
+      start: "90% bottom",
+      toggleActions: "play none none reverse"
+    },opacity: 1,
+      x: 0,
+      ease: "power2.out",
+      duration: 1
+  })
+  }, {scope: sectionRef});
 
   return (
-    <section ref={sectionRef} className="flex flex-col min-h-screen bg-[#246FA6] text-custom-white">
-      <div className="flex items-center justify-center pt-20 px-4 md:px-[100px]">
-        <img
+    <section ref={sectionRef} className="flex flex-col min-h-screen bg-[#246FA6] text-custom-white pt-24 pb-7 px-4 overflow-hidden">
+      <div className="flex items-center justify-center  md:px-[100px]">
+        <img ref={logoRef}
           src="/icons/asset-logo2.svg"
           alt="Logo"
           className="w-[200px] md:w-[500px] lg:w-[1721px] h-auto"
         />
       </div>
 
-      <div className="flex flex-col md:flex-row justify-between px-4 md:px-[60px] lg:px-[94px] mt-8 md:mt-[100px] lg:mt-[280px] space-y-8 md:space-y-0">
+      <div className="flex flex-col md:flex-row justify-between px-4 md:px-[60px] lg:px-[94px] mt-8 md:mt-[100px] lg:mt-[225px] space-y-8 md:space-y-0">
         <div className="flex flex-col md:flex-row space-y-8 md:space-x-[60px] lg:space-x-[100px] md:space-y-0">
           <div className="flex flex-col">
             <h3 className="text-xl md:text-2xl lg:text-[32px]">Bali, Indonesia</h3>

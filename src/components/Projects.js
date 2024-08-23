@@ -4,8 +4,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const Project = () => {
   const sectionRef = useRef(null);
@@ -54,7 +53,7 @@ const Project = () => {
   }, { scope: sectionRef });
 
   return (
-    <section ref={sectionRef} className="relative h-auto py-10 md:py-0">
+    <section ref={sectionRef} className="relative h-auto py-10 md:py-0 overflow-hidden">
       <div className="h-auto md:min-h-screen text-custom-gray flex flex-col items-center justify-between py-10 md:py-32">
         <p className="text-center text-xl md:text-2xl leading-[29.05px]">
           Our Project

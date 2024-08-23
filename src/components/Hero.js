@@ -4,46 +4,89 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(useGSAP);
-gsap.registerPlugin(ScrollTrigger);
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const Hero = () => {
   const sectionRef = useRef(null);
-  const leftBgRef = useRef(null);
-  const rightBgRef = useRef(null);
+  const bgRef = useRef(null);
   const h1Ref = useRef(null);
   const spanRef = useRef(null);
   const pRef = useRef(null);
 
   useGSAP(() => {
-    gsap.set(leftBgRef.current, {xPercent: -100});
-    gsap.set(h1Ref.current, {xPercent: -200, opacity: 0})
-    gsap.set(spanRef.current, {opacity: 0})
-    gsap.set(rightBgRef.current, {xPercent: 100});
-    gsap.set(pRef.current, {xPercent: 200, opacity: 0})
+    ScrollTrigger.matchMedia({
+      "(min-width: 1024px)": function () {
+        gsap.set(bgRef.current, {
+          height: "0px",
+          width: "100%",
+          transformOrigin: "center center",
+          top: "50%",
+          left: "50%",
+          xPercent: -50,
+          yPercent: -50,
+          backgroundPosition: "center center",
+        });
 
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger:sectionRef.current,
-        start: "top center",
-        // end: "bottom 80%",
-        // toggleActions: "play complete reverse none"
+        gsap.set(h1Ref.current, { xPercent: -200, opacity: 0 });
+        gsap.set(spanRef.current, { opacity: 0 });
+        gsap.set(pRef.current, { xPercent: 200, opacity: 0 });
+
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top center",
+          },
+        });
+
+        timeline.to(bgRef.current, {height: "100px",duration: 2,ease: "power2.out",});
+        timeline.to(bgRef.current,{height: "100%",duration: 2,ease: "power2.out",},"-=1");
+        timeline.to(h1Ref.current,{ xPercent: 0, opacity: 1, duration: 2 },"-=0.5");
+        timeline.to(pRef.current, { xPercent: 0, opacity: 1, duration: 2 });
+        timeline.to(spanRef.current, { opacity: 1, duration: 3 }, "-=2");
       },
-    })
-    timeline.to(leftBgRef.current, {xPercent: 0, duration: 2})
-    timeline.to(rightBgRef.current, {xPercent: 0, duration: 2}, "<")
-    timeline.to(h1Ref.current, {xPercent: 0, opacity: 1, duration: 2})
-    timeline.to(pRef.current, {xPercent: 0, opacity: 1, duration: 2}, "-=0.5")
-    timeline.to(spanRef.current, {opacity: 1, duration: 3}, "-=0.5")
-  },{scope: sectionRef})
+
+      "(max-width: 1023px)": function () {
+        gsap.set(bgRef.current, {
+          width: "0%",
+          height: "100%",
+          transformOrigin: "left center",
+          top: "50%",
+          left: "0%",
+          xPercent: 0,
+          yPercent: -50,
+          backgroundPosition: "center center",
+        });
+
+        gsap.set(h1Ref.current, { xPercent: -100, opacity: 0 });
+        gsap.set(spanRef.current, { opacity: 0 });
+        gsap.set(pRef.current, { xPercent: 100, opacity: 0 });
+
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top center",
+          },
+        });
+
+        timeline.to(bgRef.current, {width: "100%",duration: 2,ease: "power2.out",});
+        timeline.to(h1Ref.current,{ xPercent: 0, opacity: 1, duration: 1.5 },"-=1");
+        timeline.to(pRef.current, { xPercent: 0, opacity: 1, duration: 1.5 });
+        timeline.to(spanRef.current, { opacity: 1, duration: 2 }, "-=1.5");
+      },
+    });
+  }, { scope: sectionRef });
 
   return (
     <section
       ref={sectionRef}
       className="min-h-screen bg-no-repeat bg-center text-custom-white relative pb-14 overflow-hidden"
     >
-      <div ref={leftBgRef} className="absolute top-0 left-0 w-1/2 h-full bg-cover" style={{backgroundImage: "url(/asset/hero-background.png)",  backgroundPosition: "left center"}}></div>
-      <div ref={rightBgRef} className="absolute top-0 right-0 w-1/2 h-full bg-cover" style={{backgroundImage: "url(/asset/hero-background.png)", backgroundPosition: "right center"}}></div>
+      <div
+        ref={bgRef}
+        className="absolute w-full h-full bg-cover"
+        style={{ backgroundImage: "url(/asset/hero-background.png)" }}
+      ></div>
       <div className="absolute bottom-0 left-0 right-0 px-4 py-8 sm:pl-[50px] sm:pr-[50px] sm:pb-16 md:px-[80px] lg:px-[100px] md:pb-32 flex flex-col md:flex-row md:justify-between md:items-end">
         <div className="flex flex-col xl:max-w-full">
           <h1 ref={h1Ref} className="text-[32px] sm:text-xxl4 md:text-[64px] lg:text-[80px] xl:text-[90px] max-w-full sm:max-w-[80%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-full text-left leading-tight sm:leading-snug md:leading-[121.02px]">

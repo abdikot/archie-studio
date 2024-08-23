@@ -4,8 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const Contact = () => {
   const sectionRef = useRef(null);
@@ -23,7 +22,6 @@ const Contact = () => {
           end: "+=2500", 
           scrub: true,
           pin: true, 
-          markers: true,
         },
       }
     );
