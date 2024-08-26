@@ -49,9 +49,15 @@ const Story = () => {
       gsap.to(spans, {
         opacity: 1,
         y: 0,
-        stagger: 0.3,
+        stagger: 0.2,
         duration: 1.5,
         ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "40% 80%",
+          end:  "bottom 60%",
+          toggleActions: "restart complete restart complete"
+        }
       });
     });
 
@@ -60,7 +66,7 @@ const Story = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen flex text-custom-gray flex-col items-center justify-center md:justify-start pt-40 md:pt-[150px] overflow-hidden"
+      className="min-h-screen flex text-custom-gray flex-col items-center justify-center md:justify-start pt-24 md:pt-[150px] overflow-hidden"
     >
       <div ref={containerRef}>
         <p className="text-center text-xl md:text-2xl leading-[29.05px]">

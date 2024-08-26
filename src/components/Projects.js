@@ -20,9 +20,10 @@ const Project = () => {
   };
 
   useGSAP(() => {
-    gsap.set(textRef.current, { y: 0 });
-
-    imgRefs.current.forEach((img, index) => {
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 1024px)", () => {
+      gsap.set(textRef.current, { y: 0 });
+      imgRefs.current.forEach((img, index) => {
       const direction = index % 2 === 0 ? -100 : 100;
       gsap.set(img, { opacity: 0, x: direction });
       gsap.to(img,
@@ -38,30 +39,50 @@ const Project = () => {
             scrub: true,
           },
           delay: index * 0.2 
-        }
-      );
-    });
+        });
+      })
 
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top top",
-      end: "bottom bottom",
-      pin: textRef.current,
-      pinSpacing: false,
-      scrub: true,
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        pin: textRef.current,
+        pinSpacing: false,
+        scrub: true,
+      })
+    })
+
+    mm.add("(max-width: 1023px)", () => {
+    imgRefs.current.forEach((img, index) => {
+       const direction = index % 2 === 0 ? -100 : 100;
+        gsap.set(img, { opacity: 0, x: direction });
+        gsap.to(img, {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: img,
+            start: "top 80%",
+            end: "bottom 60%",
+            scrub: true,
+          },
+          delay: index * 0.2,
+        });
+      });
     });
   }, { scope: sectionRef });
 
   return (
     <section ref={sectionRef} className="relative h-auto py-10 md:py-0 overflow-hidden">
-      <div className="h-auto md:min-h-screen text-custom-gray flex flex-col items-center justify-between py-10 md:py-32">
+      <div className="h-auto md:min-h-screen text-custom-gray flex flex-col items-center justify-between py-24 md:py-32">
         <p className="text-center text-xl md:text-2xl leading-[29.05px]">
           Our Project
         </p>
 
         <h1 ref={textRef} className="mt-10 md:mt-[150px] text-center text-xxl4 md:text-xxl10 px-4 lg:px-[350px] xl:px-[350px] z-10">
           Discover the Canvas of 
-          <span className="font-play-fair italic z-10">Our Creativity</span>
+          <span className="font-play-fair italic z-10"> Our Creativity</span>
         </h1>
 
         <button className="bg-transparent h-[40px] w-[180px] md:h-[57px] md:w-[256px] border-custom-gray border-[1px] rounded-full text-base md:text-2xl mt-8">

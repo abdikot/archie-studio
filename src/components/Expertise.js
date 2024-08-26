@@ -48,7 +48,7 @@ const Expertise = () => {
       });
 
       tl2.to(h1LeftRef.current, { xPercent: 0, opacity: 1, duration: 2 });
-      tl2.to(h1RightRef.current, { xPercent: 0, opacity: 1, duration: 2 }, "+=5");
+      tl2.to(h1RightRef.current, { xPercent: 0, opacity: 1, duration: 2 }, "+=0.5");
       tl2.to(pLeftRef.current, { opacity: 1, duration: 2 });
       tl2.to(pRightRef.current, { opacity: 1, duration: 2 }, "-=0.5");
     });
@@ -66,6 +66,7 @@ const Expertise = () => {
           trigger: sectionRef.current,
           start: "top top",
           pin: true, 
+          toggleActions: "restart complete restart complete",
         },
       });
 
