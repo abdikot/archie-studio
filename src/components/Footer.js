@@ -70,18 +70,29 @@ const Footer = () => {
           },
         });
 
-        gsap.set(logo, { opacity: 0, x: -100 });
-        gsap.to(logo, {
+        gsap.from(logo, { yPercent: 100,
+          clipPath: "inset(0% 0% 100% 0%)",
+          ease: "power1.inOut",
+          duration: 2,
+          scrollTrigger: {
+            trigger: section,
+            start: "center bottom",
+            toggleActions: "play none none reverse",
+          },
+        })
+
+        const target = gsap.utils.toArray(["h3", "p", "a",  bottom])
+        gsap.from(target, { yPercent: 100,
+          clipPath: "inset(0% 0% 100% 0%)",
+          ease: "power1.inOut",
+          stagger: 0.1,
           scrollTrigger: {
             trigger: section,
             start: "90% bottom",
-            toggleActions: "play none none reverse"
+            end: "top center",
+            toggleActions: "play none reverse none",
           },
-          opacity: 1,
-          x: 0,
-          ease: "power2.out",
-          duration: 1
-        });
+        })
       }
     );
   }, {scope: sectionRef});
