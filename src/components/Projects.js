@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 const Project = () => {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
+  const buttonRef = useRef(null);
   const imgRefs = useRef([]);
 
   imgRefs.current = [];
@@ -21,6 +22,7 @@ const Project = () => {
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
+    const target = gsap.utils.toArray([textRef.current, buttonRef.current])
     mm.add("(min-width: 1024px)", () => {
       gsap.set(textRef.current, { y: 0 });
       imgRefs.current.forEach((img, index) => {
@@ -42,13 +44,25 @@ const Project = () => {
         });
       })
 
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        pin: textRef.current,
-        pinSpacing: false,
-        scrub: true,
+      gsap.to(textRef, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          pin: textRef.current,
+          pinSpacing: false,
+          scrub: true,
+          }
+      })
+      gsap.to(buttonRef,{
+        scrollTrigger: {       
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          pin: buttonRef.current,
+          pinSpacing: false,
+          scrub: true,
+        }
       })
     })
 
@@ -80,13 +94,17 @@ const Project = () => {
           Our Project
         </p>
 
-        <h1 ref={textRef} className="mt-10 md:mt-[150px] text-center text-xxl4 md:text-xxl10 px-4 lg:px-[350px] xl:px-[350px] z-10">
-          Discover the Canvas of 
-          <span className="font-play-fair italic z-10"> Our Creativity</span>
+        <h1 ref={textRef} className="mt-10 md:mt-[150px] text-center text-xxl4 md:text-xxl10 px-4 lg:px-[350px] xl:px-[350px] z-10 relative">
+          <div className="inline-block bg-white bg-opacity-40 rounded-full px-4 py-2">
+            Discover the Canvas of 
+            <span className="font-play-fair italic"> Our Creativity</span>
+          </div>
         </h1>
 
-        <button className="bg-transparent h-[40px] w-[180px] md:h-[57px] md:w-[256px] border-custom-gray border-[1px] rounded-full text-base md:text-2xl mt-8">
-          See all projects
+        <button ref={buttonRef} className="bg-transparent h-[40px] w-[180px] md:h-[57px] md:w-[256px] border-custom-gray border-[1px] rounded-full text-base md:text-2xl mt-8 z-10 relative overflow-hidden">
+          <div className="absolute inset-0 bg-white bg-opacity-40 rounded-full flex items-center justify-center">
+            See all projects
+          </div>
         </button>
       </div>
 
