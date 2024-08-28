@@ -95,14 +95,14 @@ const Project = () => {
         </p>
 
         <h1 ref={textRef} className="mt-10 md:mt-[150px] text-center text-xxl4 md:text-xxl10 px-4 lg:px-[350px] xl:px-[350px] z-10 relative">
-          <div className="inline-block bg-white bg-opacity-50 rounded-full px-4 py-2">
+          <div className="inline-block bg-white bg-opacity-40 rounded-full px-4 py-2">
             Discover the Canvas of 
             <span className="font-play-fair italic"> Our Creativity</span>
           </div>
         </h1>
 
         <button ref={buttonRef} className="bg-transparent h-[40px] w-[180px] md:h-[57px] md:w-[256px] border-custom-gray border-[1px] rounded-full text-base md:text-2xl mt-8 z-10 relative overflow-hidden">
-          <div className="absolute inset-0 bg-white bg-opacity-50 rounded-full flex items-center justify-center">
+          <div className="absolute inset-0 bg-white bg-opacity-40 rounded-full flex items-center justify-center">
             See all projects
           </div>
         </button>
