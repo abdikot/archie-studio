@@ -22,6 +22,7 @@ const Project = () => {
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
+    const target = gsap.utils.toArray([textRef.current, buttonRef.current])
     mm.add("(min-width: 1024px)", () => {
       gsap.set(textRef.current, { y: 0 });
       imgRefs.current.forEach((img, index) => {
