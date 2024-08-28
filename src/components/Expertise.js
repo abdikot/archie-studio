@@ -43,7 +43,7 @@ const Expertise = () => {
           start: "top top",
           pin: true,
           scrub: true,
-          end: "+=4000",
+          end: "+=4000"
         },
       });
 
