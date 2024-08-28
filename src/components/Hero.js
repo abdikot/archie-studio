@@ -17,17 +17,6 @@ const Hero = () => {
   useGSAP(() => {
     ScrollTrigger.matchMedia({
       "(min-width: 1024px)": function () {
-        gsap.set(bgRef.current, {
-          height: "0px",
-          width: "100%",
-          transformOrigin: "center center",
-          top: "50%",
-          left: "50%",
-          xPercent: -50,
-          yPercent: -50,
-          backgroundPosition: "center center",
-        });
-
         gsap.set(h1Ref.current, { xPercent: -200, opacity: 0 });
         gsap.set(spanRef.current, { opacity: 0 });
         gsap.set(pRef.current, { xPercent: 200, opacity: 0 });
@@ -39,7 +28,6 @@ const Hero = () => {
           },
         });
 
-        timeline.to(bgRef.current, {height: "100px",duration: 2,ease: "power2.out",});
         timeline.to(bgRef.current,{height: "100%",duration: 2,ease: "power2.out",},"-=1");
         timeline.to(h1Ref.current,{ xPercent: 0, opacity: 1, duration: 2 },"-=0.5");
         timeline.to(pRef.current, { xPercent: 0, opacity: 1, duration: 2 });
