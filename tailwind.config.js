@@ -13,6 +13,7 @@ module.exports = {
       colors: {
         "custom-gray": '#1F1F1F',
         "custom-white": '#FFF9F4',
+        "custom-blue": '#246FA6'
       },
       fontSize: {
         "xxl4" : '40px',

@@ -7,15 +7,18 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const Navbar = () => {
+  const navbarRef = useRef(null);
 
-  const navbarRef = useRef(null)
-  useGSAP (() => {
-    gsap.set(navbarRef.current, {yPercent: -200})
-    gsap.to(navbarRef.current, {yPercent: 0, duration: 3});
-  }, {scope: navbarRef})
+  useGSAP(() => {
+    gsap.set(navbarRef.current, { yPercent: -200 });
+    gsap.to(navbarRef.current, { yPercent: 0, duration: 3 });
+  }, { scope: navbarRef });
 
   return (
-    <nav ref={navbarRef} className="h-[59px] bg-transparent pt-[54px] px-5 md:px-[50px] lg:px-[100px] fixed top-0 left-0 w-full z-10">
+    <nav
+      ref={navbarRef}
+      className="fixed top-0 left-0 w-full z-10 h-[59px] bg-transparent pt-[54px] px-5 md:px-[50px] lg:px-[100px]"
+    >
       <div className="flex justify-between items-center">
         <div className="flex items-center">
           <img
@@ -32,7 +35,7 @@ const Navbar = () => {
             href="#"
             className="text-sm sm:text-base md:text-lg lg:text-2xl text-custom-white underline"
           >
-            menu
+            Menu
           </a>
         </div>
       </div>

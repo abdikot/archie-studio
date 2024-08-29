@@ -55,9 +55,9 @@ const Story = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "40% 80%",
-          end:  "bottom 60%",
-          toggleActions: "restart complete restart complete"
-        }
+          end: "bottom 60%",
+          toggleActions: "restart complete restart complete",
+        },
       });
     });
 
@@ -66,7 +66,7 @@ const Story = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen flex text-custom-gray flex-col items-center justify-center md:justify-start pt-24 md:pt-[150px] overflow-hidden"
+      className="min-h-screen flex flex-col items-center justify-center md:justify-start pt-24 md:pt-[150px] overflow-hidden text-custom-gray"
     >
       <div ref={containerRef}>
         <p className="text-center text-xl md:text-2xl leading-[29.05px]">

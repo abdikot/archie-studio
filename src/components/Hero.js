@@ -4,7 +4,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const Hero = () => {
@@ -28,10 +27,11 @@ const Hero = () => {
           },
         });
 
-        timeline.to(bgRef.current,{height: "100%",duration: 2,ease: "power2.out",},"-=1");
-        timeline.to(h1Ref.current,{ xPercent: 0, opacity: 1, duration: 2 },"-=0.5");
-        timeline.to(pRef.current, { xPercent: 0, opacity: 1, duration: 2 });
-        timeline.to(spanRef.current, { opacity: 1, duration: 3 }, "-=2");
+        timeline
+          .to(bgRef.current, { height: "100%", duration: 2, ease: "power2.out" }, "-=1")
+          .to(h1Ref.current, { xPercent: 0, opacity: 1, duration: 2 }, "-=0.5")
+          .to(pRef.current, { xPercent: 0, opacity: 1, duration: 2 })
+          .to(spanRef.current, { opacity: 1, duration: 3 }, "-=2");
       },
 
       "(max-width: 1023px)": function () {
@@ -57,10 +57,11 @@ const Hero = () => {
           },
         });
 
-        timeline.to(bgRef.current, {width: "100%",duration: 2,ease: "power2.out",});
-        timeline.to(h1Ref.current,{ xPercent: 0, opacity: 1, duration: 1.5 },"-=1");
-        timeline.to(pRef.current, { xPercent: 0, opacity: 1, duration: 1.5 });
-        timeline.to(spanRef.current, { opacity: 1, duration: 2 }, "-=1.5");
+        timeline
+          .to(bgRef.current, { width: "100%", duration: 2, ease: "power2.out" })
+          .to(h1Ref.current, { xPercent: 0, opacity: 1, duration: 1.5 }, "-=1")
+          .to(pRef.current, { xPercent: 0, opacity: 1, duration: 1.5 })
+          .to(spanRef.current, { opacity: 1, duration: 2 }, "-=1.5");
       },
     });
   }, { scope: sectionRef });
@@ -77,14 +78,20 @@ const Hero = () => {
       ></div>
       <div className="absolute bottom-0 left-0 right-0 px-4 py-8 sm:pl-[50px] sm:pr-[50px] sm:pb-16 md:px-[80px] lg:px-[100px] md:pb-32 flex flex-col md:flex-row md:justify-between md:items-end">
         <div className="flex flex-col xl:max-w-full">
-          <h1 ref={h1Ref} className="text-[32px] sm:text-xxl4 md:text-[64px] lg:text-[80px] xl:text-[90px] max-w-full sm:max-w-[80%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-full text-left leading-tight sm:leading-snug md:leading-[121.02px]">
+          <h1
+            ref={h1Ref}
+            className="text-[32px] sm:text-xxl4 md:text-[64px] lg:text-[80px] xl:text-[90px] max-w-full sm:max-w-[80%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-full text-left leading-tight sm:leading-snug md:leading-[121.02px]"
+          >
             Unveiling <span ref={spanRef} className="font-play-fair italic">Timeless Elegance</span>
             <br />
             in Every Space
           </h1>
         </div>
         <div className="flex flex-col md:max-w-[25rem] mt-4 md:mt-0">
-          <p ref={pRef} className="text-sm sm:text-base md:text-base leading-relaxed text-left">
+          <p
+            ref={pRef}
+            className="text-sm sm:text-base md:text-base leading-relaxed text-left"
+          >
             Where design meets innovation, and spaces come alive with creativity.
             As architects and interior designers based in the vibrant heart of
             Indonesia, we bring forth a fusion of cultural richness and

@@ -43,7 +43,7 @@ const Expertise = () => {
           start: "top top",
           pin: true,
           scrub: true,
-          end: "+=4000"
+          end: "+=4000",
         },
       });
 
@@ -65,7 +65,7 @@ const Expertise = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          pin: true, 
+          pin: true,
           toggleActions: "restart complete restart complete",
         },
       });
@@ -105,7 +105,10 @@ const Expertise = () => {
             >
               Archi<span className="font-play-fair italic">tectural</span>
             </h1>
-            <p ref={pLeftRef} className="text-xs sm:text-sm md:text-base text-center pt-4 md:pt-8 lg:pt-12 px-6 sm:px-12 md:px-16 lg:px-[100px] xl:px-[150px]">
+            <p
+              ref={pLeftRef}
+              className="text-xs sm:text-sm md:text-base text-center pt-4 md:pt-8 lg:pt-12 px-6 sm:px-12 md:px-16 lg:px-[100px] xl:px-[150px]"
+            >
               With a team of visionary architects, we embark on the journey of
               architectural innovation. From conceptualization to execution, we
               push the boundaries of design, creating structures that seamlessly
@@ -127,7 +130,10 @@ const Expertise = () => {
             >
               Interior <span className="font-play-fair italic">Design</span>
             </h1>
-            <p ref={pRightRef} className="text-xs sm:text-sm md:text-base text-center pt-4 md:pt-8 lg:pt-12 px-6 sm:px-12 md:px-16 lg:px-[100px] xl:px-[150px]">
+            <p
+              ref={pRightRef}
+              className="text-xs sm:text-sm md:text-base text-center pt-4 md:pt-8 lg:pt-12 px-6 sm:px-12 md:px-16 lg:px-[100px] xl:px-[150px]"
+            >
               Our interior design team is a symphony of creativity and
               functionality. We curate interiors that tell stories, where each
               element is thoughtfully chosen to enhance the overall aesthetic

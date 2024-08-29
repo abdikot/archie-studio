@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -13,94 +13,100 @@ const Footer = () => {
   const bottomRef = useRef(null);
 
   useGSAP(() => {
-    const section = sectionRef.current;
-    const logo = logoRef.current;
-    const content = contentRef.current;
-    const bottom = bottomRef.current;
-
     const mm = gsap.matchMedia();
 
     mm.add("(max-width: 1023px)", () => {
-        gsap.set(logo, { opacity: 0, y: -100 });
-        gsap.to(logo, {
-          scrollTrigger: {
-            trigger: section,
-            start: "20% bottom",
-            toggleActions: "play none none reverse"
-          },
-          opacity: 1,
-          y: 0,
-          ease: "power2.out",
-          duration: 2
-        })
-        gsap.set(content, {opacity: 0, x: -100})
-        gsap.to(content, {scrollTrigger: {
-          trigger: section,
+      gsap.set(logoRef.current, { opacity: 0, y: -100 });
+      gsap.to(logoRef.current, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "20% bottom",
+          toggleActions: "play none none reverse"
+        },
+        opacity: 1,
+        y: 0,
+        ease: "power2.out",
+        duration: 2
+      });
+
+      gsap.set(contentRef.current, { opacity: 0, x: -100 });
+      gsap.to(contentRef.current, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
           start: "90% bottom",
           toggleActions: "play none none reverse"
-        },opacity: 1,
-          x: 0,
-          ease: "power3.out",
-          duration: 2
-      })
-        gsap.set(bottom, {opacity: 0, y: 100})
-        gsap.to(bottom, {scrollTrigger: {
-          trigger: section,
+        },
+        opacity: 1,
+        x: 0,
+        ease: "power3.out",
+        duration: 2
+      });
+
+      gsap.set(bottomRef.current, { opacity: 0, y: 100 });
+      gsap.to(bottomRef.current, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
           start: "90% bottom",
           toggleActions: "play none none reverse"
-        },opacity: 1,
-          y: 0,
-          ease: "power3.out",
-          duration: 2
-      })
-      })
-    
+        },
+        opacity: 1,
+        y: 0,
+        ease: "power3.out",
+        duration: 2
+      });
+    });
 
-      mm.add("(min-width: 1024px)", () => {
-        gsap.set(section, { clipPath: "inset(50% 0 50% 0)" });
+    mm.add("(min-width: 1024px)", () => {
+      gsap.set(sectionRef.current, { clipPath: "inset(50% 0 50% 0)" });
 
-        gsap.to(section, {
-          clipPath: "inset(0% 0% 0% 0%)",
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top bottom",
-            end: "+=1000",
-            scrub: true,
-          },
-        });
+      gsap.to(sectionRef.current, {
+        clipPath: "inset(0% 0% 0% 0%)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "+=1000",
+          scrub: true,
+        }
+      });
 
-        gsap.from(logo, { yPercent: 100,
-          clipPath: "inset(0% 0% 100% 0%)",
-          ease: "power1.inOut",
-          duration: 2,
-          scrollTrigger: {
-            trigger: section,
-            start: "center bottom",
-            toggleActions: "play none none reverse",
-          },
-        })
+      gsap.from(logoRef.current, {
+        yPercent: 100,
+        clipPath: "inset(0% 0% 100% 0%)",
+        ease: "power1.inOut",
+        duration: 2,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "center bottom",
+          toggleActions: "play none none reverse",
+        }
+      });
 
-        const target = gsap.utils.toArray(["h3", "p", "a",  bottom])
-        gsap.from(target, { yPercent: 100,
-          clipPath: "inset(0% 0% 100% 0%)",
-          ease: "power1.inOut",
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: section,
-            start: "90% bottom",
-            end: "top center",
-            toggleActions: "play none reverse none",
-          },
-        })
-      }
-    );
-  }, {scope: sectionRef});
+      const targetElements = gsap.utils.toArray(["h3", "p", "a", bottomRef.current]);
+      gsap.from(targetElements, {
+        yPercent: 100,
+        clipPath: "inset(0% 0% 100% 0%)",
+        ease: "power1.inOut",
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "90% bottom",
+          end: "top center",
+          toggleActions: "play none reverse none",
+        }
+      });
+    });
+
+    return () => {
+      mm.revert();
+    };
+  }, { scope: sectionRef });
 
   return (
     <section ref={sectionRef} className="flex flex-col min-h-screen bg-[#246FA6] text-custom-white pt-24 pb-7 px-4 overflow-hidden">
       <div className="flex items-center justify-center md:px-[100px]">
-        <img ref={logoRef}
+        <img
+          ref={logoRef}
           src="/icons/asset-logo2.svg"
           alt="Logo"
           className="w-[350px] md:w-[500px] lg:w-[1721px] h-auto"
@@ -150,7 +156,7 @@ const Footer = () => {
         </div>
         <div className="flex items-center space-x-1 md:space-x-2 lg:space-x-4">
           <p>Created by |</p>
-          <img src="/icons/logo-lapomps.svg" className="w-14 md:w-10 lg:w-auto h-auto" />
+          <img src="/icons/logo-lapomps.svg" className="w-14 md:w-10 lg:w-auto h-auto" alt="Lapomps Logo" />
         </div>
       </div>
     </section>
