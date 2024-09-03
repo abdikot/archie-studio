@@ -20,6 +20,12 @@ const Project = () => {
     }
   };
 
+  const data = [
+    ["/asset/project-1.png", "/asset/project-4.png", "/asset/project-7.png", "/asset/project-10.png"],
+    ["/asset/project-2.png", "/asset/project-5.png", "/asset/project-8.png", "/asset/project-11.png"],
+    ["/asset/project-3.png", "/asset/project-6.png", "/asset/project-9.png", "/asset/project-12.png"]
+  ]
+
   useGSAP(() => {
     const mm = gsap.matchMedia();
 
@@ -119,11 +125,7 @@ const Project = () => {
       </div>
 
       <div className="flex flex-col md:flex-row px-4 md:px-[50px] lg:px-[100px] mt-10 md:mt-0">
-        {[
-          ["/asset/project-1.png", "/asset/project-4.png", "/asset/project-7.png", "/asset/project-10.png"],
-          ["/asset/project-2.png", "/asset/project-5.png", "/asset/project-8.png", "/asset/project-11.png"],
-          ["/asset/project-3.png", "/asset/project-6.png", "/asset/project-9.png", "/asset/project-12.png"]
-        ].map((group, i) => (
+        {data.map((group, i) => (
           <div
             key={i}
             className={`flex flex-col w-full md:w-1/3 ${i === 1 ? 'mt-10 md:mt-12 lg:mt-[248px]' : i === 2 ? 'mt-10 md:mt-0 lg:mt-32' : ''} ${i !== 2 ? 'md:mr-[30px] lg:mr-[60px] xl:mr-[100px]' : ''}`}

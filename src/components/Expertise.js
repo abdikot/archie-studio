@@ -1,12 +1,25 @@
 "use client";
-import { useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+async function getStrapiData(path) {
+  const baseUrl = "http://localhost:1337";
+  try {
+    const response = await fetch(baseUrl + path);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return { data: [] };
+  }
+}
+
 const Expertise = () => {
+  const [expertises, setExpertises] = useState([]);
   const sectionRef = useRef(null);
   const leftBgRef = useRef(null);
   const rightBgRef = useRef(null);
@@ -14,6 +27,14 @@ const Expertise = () => {
   const pLeftRef = useRef(null);
   const h1RightRef = useRef(null);
   const pRightRef = useRef(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getStrapiData("/api/expertises");
+      setExpertises(data.data);
+    };
+    fetchData();
+  }, []);
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
@@ -47,10 +68,10 @@ const Expertise = () => {
         },
       });
 
-      tl2.to(h1LeftRef.current, { xPercent: 0, opacity: 1, duration: 2 });
-      tl2.to(h1RightRef.current, { xPercent: 0, opacity: 1, duration: 2 }, "+=0.5");
-      tl2.to(pLeftRef.current, { opacity: 1, duration: 2 });
-      tl2.to(pRightRef.current, { opacity: 1, duration: 2 }, "-=0.5");
+      tl2.to(h1LeftRef.current, { xPercent: 0, opacity: 1, duration: 1 });
+      tl2.to(h1RightRef.current, { xPercent: 0, opacity: 1, duration: 1 }, "+=0.5");
+      tl2.to(pLeftRef.current, { opacity: 1, duration: 1 });
+      tl2.to(pRightRef.current, { opacity: 1, duration: 1 }, "-=0.5");
     });
 
     mm.add("(max-width: 1023px)", () => {
@@ -91,56 +112,54 @@ const Expertise = () => {
       </p>
 
       <div className="flex flex-col md:flex-row w-full h-auto md:h-[801px] relative text-custom-white">
-        <div className="relative w-full md:w-1/2 h-80 md:h-full">
-          <img
-            ref={leftBgRef}
-            src="/asset/expertise-architecture.png"
-            className="w-full h-full object-cover bg-no-repeat"
-            alt="Architectural Expertise"
-          />
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-6 lg:p-8">
-            <h1
-              ref={h1LeftRef}
-              className="text-xxl4 sm:text-xxl4 md:text-[60px] lg:text-[80px] xl:text-xxl10"
-            >
-              Archi<span className="font-play-fair italic">tectural</span>
-            </h1>
-            <p
-              ref={pLeftRef}
-              className="text-xs sm:text-sm md:text-base text-center pt-4 md:pt-8 lg:pt-12 px-6 sm:px-12 md:px-16 lg:px-[100px] xl:px-[150px]"
-            >
-              With a team of visionary architects, we embark on the journey of
-              architectural innovation. From conceptualization to execution, we
-              push the boundaries of design, creating structures that seamlessly
-              blend form, function, and sustainability.
-            </p>
-          </div>
-        </div>
-        <div className="relative w-full md:w-1/2 h-80 md:h-full mt-6 md:mt-0">
-          <img
-            ref={rightBgRef}
-            src="/asset/expertise-interior.png"
-            className="w-full h-full object-cover"
-            alt="Interior Design Expertise"
-          />
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-6 lg:p-8">
-            <h1
-              ref={h1RightRef}
-              className="text-xxl4 sm:text-xxl4 md:text-[60px] md:text-center lg:text-[80px] xl:text-xxl10"
-            >
-              Interior <span className="font-play-fair italic">Design</span>
-            </h1>
-            <p
-              ref={pRightRef}
-              className="text-xs sm:text-sm md:text-base text-center pt-4 md:pt-8 lg:pt-12 px-6 sm:px-12 md:px-16 lg:px-[100px] xl:px-[150px]"
-            >
-              Our interior design team is a symphony of creativity and
-              functionality. We curate interiors that tell stories, where each
-              element is thoughtfully chosen to enhance the overall aesthetic
-              and user experience.
-            </p>
-          </div>
-        </div>
+        {expertises.length > 0 && (
+          <>
+            <div className="relative w-full md:w-1/2 h-80 md:h-full">
+              <img
+                ref={leftBgRef}
+                src="/asset/expertise-architecture.png"
+                className="w-full h-full object-cover bg-no-repeat"
+                alt="Architectural Expertise"
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-6 lg:p-8">
+                <h1
+                  ref={h1LeftRef}
+                  className="text-xxl4 sm:text-xxl4 md:text-[60px] lg:text-[80px] xl:text-xxl10"
+                >
+                  {expertises[0]?.attributes?.title}
+                </h1>
+                <p
+                  ref={pLeftRef}
+                  className="text-xs sm:text-sm md:text-base text-center pt-4 md:pt-8 lg:pt-12 px-6 sm:px-12 md:px-16 lg:px-[100px] xl:px-[150px]"
+                >
+                  {expertises[0]?.attributes?.description}
+                </p>
+              </div>
+            </div>
+            <div className="relative w-full md:w-1/2 h-80 md:h-full mt-6 md:mt-0">
+              <img
+                ref={rightBgRef}
+                src="/asset/expertise-interior.png"
+                className="w-full h-full object-cover"
+                alt="Interior Design Expertise"
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-6 lg:p-8">
+                <h1
+                  ref={h1RightRef}
+                  className="text-xxl4 sm:text-xxl4 md:text-[60px] md:text-center lg:text-[80px] xl:text-xxl10"
+                >
+                  {expertises[1]?.attributes?.title}
+                </h1>
+                <p
+                  ref={pRightRef}
+                  className="text-xs sm:text-sm md:text-base text-center pt-4 md:pt-8 lg:pt-12 px-6 sm:px-12 md:px-16 lg:px-[100px] xl:px-[150px]"
+                >
+                  {expertises[1]?.attributes?.description}
+                </p>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

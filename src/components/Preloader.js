@@ -9,6 +9,21 @@ const Preloader = ({ onComplete }) => {
 
   imgRefs.current = [];
 
+  const data = [
+    "/asset/project-1.png",
+    "/asset/project-2.png",
+    "/asset/project-12.png",
+    "/asset/project-4.png",
+    "/asset/project-5.png",
+    "/asset/project-6.png",
+    "/asset/project-7.png",
+    "/asset/project-8.png",
+    "/asset/project-9.png",
+    "/asset/project-10.png",
+    "/asset/project-11.png",
+    "/asset/project-3.png"
+  ]
+
   const addToImgRefs = (el) => {
     if (el && !imgRefs.current.includes(el)) {
       imgRefs.current.push(el);
@@ -105,20 +120,7 @@ const Preloader = ({ onComplete }) => {
       className="fixed inset-0 bg-custom-blue overflow-hidden bg-center bg-no-repeat z-50"
     >
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full md:w-[40vw] md:h-[70vh] z-0 md:z-10 bg-center">
-        {[
-          "/asset/project-1.png",
-          "/asset/project-2.png",
-          "/asset/project-12.png",
-          "/asset/project-4.png",
-          "/asset/project-5.png",
-          "/asset/project-6.png",
-          "/asset/project-7.png",
-          "/asset/project-8.png",
-          "/asset/project-9.png",
-          "/asset/project-10.png",
-          "/asset/project-11.png",
-          "/asset/project-3.png"
-        ].map((src, index) => (
+        {data.map((src, index) => (
           <div
             key={index}
             ref={addToImgRefs}

@@ -1,8 +1,9 @@
-"use client"
+"use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Preloader from "@/components/Preloader";
-import { useRef } from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,8 +11,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Preloader/>
-        <>{children}</>
+        <Preloader />
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   );
