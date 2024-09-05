@@ -1,16 +1,29 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+async function getStrapiData(path) {
+  const baseUrl = "http://localhost:1337";
+  try {
+    const response = await fetch(baseUrl + path);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return { data: [] };
+  }
+}
+
 const Project = () => {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
   const buttonRef = useRef(null);
   const imgRefs = useRef([]);
+  const [projects, setProjects] = useState([]);
 
   imgRefs.current = [];
 
@@ -20,11 +33,14 @@ const Project = () => {
     }
   };
 
-  const data = [
-    ["/asset/project-1.png", "/asset/project-4.png", "/asset/project-7.png", "/asset/project-10.png"],
-    ["/asset/project-2.png", "/asset/project-5.png", "/asset/project-8.png", "/asset/project-11.png"],
-    ["/asset/project-3.png", "/asset/project-6.png", "/asset/project-9.png", "/asset/project-12.png"]
-  ]
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getStrapiData("/api/projects?populate=*");
+      setProjects(data.data);
+    };
+
+    fetchData();
+  }, []);
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
@@ -124,24 +140,39 @@ const Project = () => {
         </button>
       </div>
 
-      <div className="flex flex-col md:flex-row px-4 md:px-[50px] lg:px-[100px] mt-10 md:mt-0">
-        {data.map((group, i) => (
+      <div className="flex flex-col md:flex-row px-4 md:px-[50px] lg:px-[100px] mt-10 md:mt-0 space-y-8 md:space-y-0">
+        {projects.map((project, i) => (
           <div
             key={i}
             className={`flex flex-col w-full md:w-1/3 ${i === 1 ? 'mt-10 md:mt-12 lg:mt-[248px]' : i === 2 ? 'mt-10 md:mt-0 lg:mt-32' : ''} ${i !== 2 ? 'md:mr-[30px] lg:mr-[60px] xl:mr-[100px]' : ''}`}
           >
-            {group.map((src, j) => (
-              <div
-                key={j}
-                ref={addToImgRefs}
-                className={`${j !== 0 ? 'mt-8 md:mt-32' : ''}`}
-              >
-                <img
-                  src={src}
-                  className="w-full h-[300px] md:h-[450px] object-cover"
-                />
-              </div>
-            ))}
+            {project.attributes.image && project.attributes.image.data ? (
+              Array.isArray(project.attributes.image.data) ? (
+                project.attributes.image.data.map((image, j) => (
+                  <div
+                    key={j}
+                    ref={addToImgRefs}
+                    className={`${j !== 0 ? 'mt-8 md:mt-32' : ''}`}
+                  >
+                    <img
+                      src={`http://localhost:1337${image.attributes.url}`} 
+                      className="w-full h-[300px] md:h-[450px] object-cover"
+                      alt={project.attributes.title || "Project Image"}
+                    />
+                  </div>
+                ))
+              ) : (
+                <div ref={addToImgRefs} className="mt-8 md:mt-32">
+                  <img
+                    src={`http://localhost:1337${project.attributes.image.data.attributes.url}`} 
+                    className="w-full h-[300px] md:h-[450px] object-cover"
+                    alt={project.attributes.title || "Project Image"}
+                  />
+                </div>
+              )
+            ) : (
+              <p>No images available</p>
+            )}
           </div>
         ))}
       </div>
